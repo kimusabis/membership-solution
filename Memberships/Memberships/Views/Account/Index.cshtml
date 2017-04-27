@@ -11,8 +11,8 @@
     <p>
         @Html.Partial("_CreateNewButtonPartial")
     </p>
-    <table class="table-condensed table-striped">
-        <tr>
+    <table class="table table-striped">
+        <tr class="success">
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
@@ -24,7 +24,7 @@
 
         @foreach (var item in Model)
         {
-            <tr class="success">
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>

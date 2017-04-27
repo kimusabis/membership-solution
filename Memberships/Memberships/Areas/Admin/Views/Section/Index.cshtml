@@ -11,7 +11,7 @@
     @Html.Partial("_CreateNewButtonPartial")
 </p>
 <table class="table table-striped">
-    <tr>
+    <tr class="success">
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -19,7 +19,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr class="success">
+    <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
