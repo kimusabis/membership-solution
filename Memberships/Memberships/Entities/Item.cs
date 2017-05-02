@@ -29,7 +29,7 @@ namespace Memberships.Entities
         public string HTML { get; set; }
         [DefaultValue(0)]
         [DisplayName("Wait Days")]
-        public int WaitDays { get; set; }
+        public int WaitDays { get; set; }        
         public string HTMLShort { get { return HTML == null || HTML.Length < 50 ? HTML : HTML.Substring(0, 50); } }
         public int ItemTypeId { get; set; }
         public int SectionId { get; set; }
@@ -37,10 +37,13 @@ namespace Memberships.Entities
         [DisplayName("Is Free")]
         public bool IsFree { get; set; }
         [DisplayName("Item Types")]
-        public ICollection<ItemType> ItemTypes { get; set; }
+        
+        public ICollection<ItemType> ItemTypes { get; set; }        
         [DisplayName("Chapters")]
-        public ICollection<Section> Sections { get; set; }
-        [DisplayName("Parts")]
+        
+        public ICollection<Section> Sections { get; set; }        
+        [DisplayName("Part")]
+        
         public ICollection<Part> Parts { get; set; }
     }
 }

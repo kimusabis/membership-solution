@@ -58,6 +58,37 @@ namespace Memberships.Areas.Admin.Extensions
             return model;
         }
 
+        public static async Task<ItemModel> Convert(this Item item, ApplicationDbContext db)
+        {
+            var itemType = await db.ItemTypes.FirstOrDefaultAsync(p => p.Id.Equals(item.ItemTypeId));
+            var part = await db.Parts.FirstOrDefaultAsync(p => p.Id.Equals(item.PartId));
+            var section = await db.Sections.FirstOrDefaultAsync(p => p.Id.Equals(item.SectionId));
+
+            var model = new ItemModel
+            {
+                Id = item.Id,
+                Title = item.Title,
+                Description = item.Description,
+                Url = item.Url,
+                ImageUrl = item.ImageUrl,
+                HTML = item.HTML,
+                WaitDays = item.WaitDays,
+                ItemTypeId = item.ItemTypeId,
+                SectionId = item.SectionId,
+                PartId = item.PartId,
+                IsFree = item.IsFree,
+                ItemTypes = new List<ItemType>(),
+                Parts = new List<Part>(),
+                Sections = new List<Section>()
+            };
+
+            model.ItemTypes.Add(itemType);
+            model.Parts.Add(part);
+            model.Sections.Add(section);
+
+            return model;
+        }
+
         public static async Task<List<ProductItemModel>> Convert(this IQueryable<ProductItem> productItems, ApplicationDbContext db)
         {
             if (productItems.Count().Equals(0))
@@ -78,14 +109,14 @@ namespace Memberships.Areas.Admin.Extensions
         }
 
         public static async Task<ProductItemModel> Convert(this ProductItem productItem, ApplicationDbContext db, bool addListData = true)
-        {            
+        {
             var model = new ProductItemModel()
             {
                 ItemId = productItem.ItemId,
                 ProductId = productItem.ProductId,
                 Items = (addListData ? await db.Items.ToListAsync() : null),
                 Products = (addListData ? await db.Products.ToListAsync() : null),
-                ItemTitle = (await db.Items.FirstOrDefaultAsync(i=> i.Id.Equals(productItem.ItemId))).Title,
+                ItemTitle = (await db.Items.FirstOrDefaultAsync(i => i.Id.Equals(productItem.ItemId))).Title,
                 ProductTitle = (await db.Products.FirstOrDefaultAsync(i => i.Id.Equals(productItem.ProductId))).Title,
             };
 
@@ -130,9 +161,9 @@ namespace Memberships.Areas.Admin.Extensions
 
                         transaction.Complete();
                     }
-                    catch 
+                    catch
                     {
-                        transaction.Dispose();                        
+                        transaction.Dispose();
                     }
                 }
             }

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using Memberships.Entities;
 using Memberships.Models;
 using System.Transactions;
+using Memberships.Areas.Admin.Extensions;
 
 namespace Memberships.Areas.Admin.Controllers
 {
@@ -36,7 +37,10 @@ namespace Memberships.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(item);
+
+            var model = await item.Convert(db);
+
+            return View(model);
         }
 
         // GET: Admin/Item/Create
@@ -117,7 +121,9 @@ namespace Memberships.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(item);
+            var model = await item.Convert(db);
+
+            return View(model);
         }
 
         // POST: Admin/Item/Delete/5

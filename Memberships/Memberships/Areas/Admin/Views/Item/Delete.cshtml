@@ -1,4 +1,4 @@
-﻿@model Memberships.Entities.Item
+﻿@model Memberships.Areas.Admin.Models.ItemModel
 
 @{
     ViewBag.Title = "Delete";
@@ -60,27 +60,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ItemTypeId)
+            @Html.DisplayNameFor(model => model.ItemType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ItemTypeId)
+            @Html.DisplayFor(model => model.ItemType)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SectionId)
+            @Html.DisplayNameFor(model => model.Sections)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SectionId)
+            @Html.DisplayFor(model => model.Section)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PartId)
+            @Html.DisplayNameFor(model => model.Parts)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PartId)
+            @Html.DisplayFor(model => model.Part)
         </dd>
 
         <dt>
@@ -98,7 +98,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-danger btn-sm" /> |
-            @Html.Partial("BackToListButtonPartial")
+            @Html.Partial("_BackToListButtonPartial")
         </div>
     }
 </div>

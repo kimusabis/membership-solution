@@ -210,13 +210,20 @@
     <Compile Include="Areas\Admin\Controllers\SubscriptionProductController.cs" />
     <Compile Include="Areas\Admin\Extensions\ConversionExtensions.cs" />
     <Compile Include="Areas\Admin\Models\EditButtonModel.cs" />
+    <Compile Include="Areas\Admin\Models\ItemModel.cs" />
     <Compile Include="Areas\Admin\Models\SubscriptionProductModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductItemModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductModel.cs" />
     <Compile Include="Areas\Admin\Models\SmallButtonModel.cs" />
+    <Compile Include="Comparers\ProductSectionEqualityComparer.cs" />
     <Compile Include="Comparers\ThumbnailEqualityComparer.cs" />
+    <Compile Include="Controllers\ProductContentController.cs" />
     <Compile Include="Extensions\HttpContextExtensions.cs" />
+    <Compile Include="Extensions\SectionEtensions.cs" />
     <Compile Include="Extensions\ThumbnailExtensions.cs" />
+    <Compile Include="Models\ProductItemRow.cs" />
+    <Compile Include="Models\ProductSection.cs" />
+    <Compile Include="Models\ProductSectionModel.cs" />
     <Compile Include="Models\ThumbnailAreaModel.cs" />
     <Compile Include="Models\ThumbnailModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -255,6 +262,7 @@
     <Content Include="Content\Logos\caf_de_colombia_logo_2935.gif" />
     <Content Include="Content\Logos\Colombia_brand_logo.gif" />
     <Content Include="Content\navbar.css" />
+    <Content Include="Content\ProductContent.css" />
     <Content Include="Content\thumbnails.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -274,6 +282,7 @@
     <Content Include="Areas\Admin\Views\Section\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Section\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Section\Index.cshtml" />
+    <Content Include="Scripts\carret.js" />
     <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_EditButtonPartial.cshtml" />
     <Content Include="Views\Shared\_CreateNewButtonPartial.cshtml" />
@@ -325,6 +334,7 @@
     <Content Include="Areas\Admin\Views\SubscriptionProduct\Details.cshtml" />
     <Content Include="Areas\Admin\Views\SubscriptionProduct\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SubscriptionProduct\Index.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -378,6 +388,9 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Subscriptions.cshtml" />
     <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
+    <Content Include="Views\ProductContent\Index.cshtml" />
+    <Content Include="Views\Shared\_ProductSection.cshtml" />
+    <Content Include="Views\Shared\_ProductItemRowPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
