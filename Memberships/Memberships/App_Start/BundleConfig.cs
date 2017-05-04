@@ -31,12 +31,14 @@ namespace Memberships
                         "~/Scripts/AdminMenu.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/membership").Include(
-                        "~/Scripts/carret.js"));
+                        "~/Scripts/carret.js",
+                        "~/Scripts/JWPlayer.js"));
             
             bundles.Add(new StyleBundle("~/Content/membership").Include(
                       "~/Content/navbar.css",
                       "~/Content/thumbnails.css",
-                      "~/Content/ProductContent.css"));
+                      "~/Content/ProductContent.css",
+                      "~/Content/html.css"));
 
         }
     }

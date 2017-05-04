@@ -219,8 +219,9 @@
     <Compile Include="Comparers\ThumbnailEqualityComparer.cs" />
     <Compile Include="Controllers\ProductContentController.cs" />
     <Compile Include="Extensions\HttpContextExtensions.cs" />
-    <Compile Include="Extensions\SectionEtensions.cs" />
+    <Compile Include="Extensions\SectionExtensions.cs" />
     <Compile Include="Extensions\ThumbnailExtensions.cs" />
+    <Compile Include="Models\ContentViewModel.cs" />
     <Compile Include="Models\ProductItemRow.cs" />
     <Compile Include="Models\ProductSection.cs" />
     <Compile Include="Models\ProductSectionModel.cs" />
@@ -259,6 +260,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\html.css" />
     <Content Include="Content\Logos\caf_de_colombia_logo_2935.gif" />
     <Content Include="Content\Logos\Colombia_brand_logo.gif" />
     <Content Include="Content\navbar.css" />
@@ -283,6 +285,7 @@
     <Content Include="Areas\Admin\Views\Section\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Section\Index.cshtml" />
     <Content Include="Scripts\carret.js" />
+    <Content Include="Scripts\JWPlayer.js" />
     <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_EditButtonPartial.cshtml" />
     <Content Include="Views\Shared\_CreateNewButtonPartial.cshtml" />
@@ -391,9 +394,11 @@
     <Content Include="Views\ProductContent\Index.cshtml" />
     <Content Include="Views\Shared\_ProductSection.cshtml" />
     <Content Include="Views\Shared\_ProductItemRowPartial.cshtml" />
+    <Content Include="Views\ProductContent\Content.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ThirdParty\jwplayer-7.10.7\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

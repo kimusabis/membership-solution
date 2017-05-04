@@ -10,7 +10,7 @@ using System.Web;
 
 namespace Memberships.Extensions
 {
-    public class SectionEtensions
+    public class SectionExtensions
     {
         #region Product Methods for the ProductController
         public static async Task<ProductSectionModel> GetProductSectionAsync(int productId, string userId)
@@ -79,6 +79,23 @@ namespace Memberships.Extensions
                                }).ToListAsync();
 
             return items;
+        }
+
+        public static async Task<ContentViewModel> GetContentAsync(int productId, int itemId) {
+            var db = ApplicationDbContext.Create();
+
+            return await (
+                from i in db.Items
+                join it in db.ItemTypes on i.ItemTypeId equals it.Id
+                where i.Id.Equals(itemId)
+                select new ContentViewModel
+                {
+                    ProductId = productId,
+                    HTML = i.HTML,
+                    VideoURL = i.Url,
+                    Title = i.Title,
+                    Description = i.Description
+                }).FirstOrDefaultAsync();
         }
     }
 }
