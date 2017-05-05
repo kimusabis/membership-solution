@@ -32,13 +32,15 @@ namespace Memberships
 
             bundles.Add(new ScriptBundle("~/bundles/membership").Include(
                         "~/Scripts/carret.js",
-                        "~/Scripts/JWPlayer.js"));
+                        "~/Scripts/JWPlayer.js",
+                        "~/Scripts/RegisterCode.js"));
             
             bundles.Add(new StyleBundle("~/Content/membership").Include(
                       "~/Content/navbar.css",
                       "~/Content/thumbnails.css",
                       "~/Content/ProductContent.css",
-                      "~/Content/html.css"));
+                      "~/Content/html.css",
+                      "~/Content/RegisterCode.css"));
 
         }
     }

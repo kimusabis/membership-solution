@@ -7,16 +7,16 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/membership")
     @Scripts.Render("~/bundles/modernizr")
-
+    
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <!--self hosted sample
     <script src="//mywebsite.com/jwplayer/jwplayer.js"></script>
     <script>jwplayer.key="ABCdeFG123456SeVenABCdeFG123456SeVen==";</script>
         -->
-    <!--
+    
     <script src="https://content.jwplatform.com/libraries/NwU2KK5D.js"></script>
--->
+
 </head>
 <body>
     <div class="navbar navbar-fixed-top">
@@ -55,6 +55,9 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/admin")
+    @Scripts.Render("~/bundles/membership")
+
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

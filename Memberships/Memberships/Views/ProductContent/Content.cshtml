@@ -19,7 +19,7 @@
     <div class="article">@Html.Raw(Model.HTML)</div>
 }
 
-@if (Model.VideoUrl != null) {
+@if (Model.VideoURL != null) {
     @*Place holder for the video player*@
     <div id="video" class="video-margin">&nbsp;</div>
     <div id="hiddenUrl" hidden="hidden">@Model.VideoURL</div>
@@ -28,9 +28,9 @@
 @section scripts
 {
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             //call the video player function in the JWPlayer.js file
             jwVideo($("#hiddenUrl").text());
         })
     </script>
-    }
+}
