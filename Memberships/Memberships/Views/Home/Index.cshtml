@@ -18,7 +18,9 @@
         <!--lef column-->
         <div class="col-lg-9 col-md-8 col-sm-7">Not Logged left</div>
         <!--right column-->
-        <div class="col-lg-3 col-md-4 col-sm-5">Not Logged right</div>
+        <div class="col-lg-3 col-md-4 col-sm-5">
+            @Html.Partial("_RegisterUserPartial", new RegisterUserModel { Email = "", Name = "", Password = ""})
+        </div>
     }
 </div>
 <div class="row">

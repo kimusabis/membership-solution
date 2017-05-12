@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -54,7 +55,7 @@ namespace Memberships.Extensions
         {
             if (db == null) db = ApplicationDbContext.Create();
             var today = DateTime.Now.Date;
-            // todo: add wait days and evaluate isavailable property
+
             var items = await (from i in db.Items
                                join it in db.ItemTypes on i.ItemTypeId equals it.Id
                                join pi in db.ProductItems on i.Id equals pi.ItemId
@@ -69,13 +70,11 @@ namespace Memberships.Extensions
                                    ItemId = i.Id,
                                    Description = i.Description + i.WaitDays,
                                    Title = i.Title,
-                                   Link = it.Title.Equals("Download") ? i.Url : "/ProductContent/Content/" + pi.ProductId + "/" + i.Id,
+                                   Link = it.Title.ToLower().Equals("download") ? i.Url : "/ProductContent/Content/" + pi.ProductId + "/" + i.Id,
                                    ImageUrl = i.ImageUrl,
-                                   ReleaseDate = DbFunctions.CreateDateTime(us.StartDate.Value.Year, us.StartDate.Value.Month, us.StartDate.Value.Day, 0, 0, 0),
-                                   IsAvailable = true,
-                                   //IsAvailable = DbFunctions.CreateDateTime(us.StartDate.Value.Year, us.StartDate.Value.Month, us.StartDate.Value.Day, 0, 0, 0) >
-                                   //  DbFunctions.CreateDateTime(us.StartDate.Value.Year, us.StartDate.Value.Month, us.StartDate.Value.Day + i.WaitDays, 0, 0, 0),
-                                   IsDownload = it.Title.Equals("Download")
+                                   ReleaseDate = DbFunctions.AddDays(us.StartDate.Value, i.WaitDays),
+                                   IsAvailable =  us.StartDate.Value > DbFunctions.AddDays(us.StartDate.Value, i.WaitDays),
+                                   IsDownload = it.Title.ToLower().Equals("download")
                                }).ToListAsync();
 
             return items;

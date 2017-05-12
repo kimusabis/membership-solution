@@ -785,5 +785,77 @@ namespace Memberships.Controllers
             }
         }
         #endregion
+
+        #region Custom methods / Register User
+        private void AddUserErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                if (error.StartsWith("Name") && error.EndsWith("is already taken.")) continue;
+
+                ModelState.AddModelError("", error);
+            }
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterUserAsync(RegisterUserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.Name,
+                    IsActive = true,
+                    EmailConfirmed = true,
+                    Registered = DateTime.Now
+                };
+
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // add default subscriptions
+                    await SubscriptionExtensions.RegisterUserSubscriptionCode("Free", user.Id);
+                    return RedirectToAction("Index", "Manage");
+                }
+                AddUserErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return PartialView("_RegisterUserPartial", model); ;
+        }
+        #endregion
+
+        #region Login        
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> LoginAsync(LoginViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = UserManager.Users.FirstOrDefault(u => u.Email.Equals(model.Email));
+
+                if (user != null && user.UserName.Length > 0)
+                {
+                    var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+
+                    if (result.Equals(SignInStatus.Success))
+                        return RedirectToAction("Index", "Manage");
+                }
+            }
+            //if we reach this point something gave error, then re-display the view
+            ModelState.AddModelError("", "Invalid login attempt.");
+            return PartialView("_LoginPanelPartial", model);
+        }
+
+        #endregion        
     }
 }

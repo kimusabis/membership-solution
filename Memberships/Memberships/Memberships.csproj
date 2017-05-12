@@ -219,6 +219,7 @@
     <Compile Include="Comparers\ThumbnailEqualityComparer.cs" />
     <Compile Include="Controllers\ProductContentController.cs" />
     <Compile Include="Controllers\RegisterCodeController.cs" />
+    <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\HttpContextExtensions.cs" />
     <Compile Include="Extensions\SectionExtensions.cs" />
     <Compile Include="Extensions\SubscriptionExtensions.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Models\ProductItemRow.cs" />
     <Compile Include="Models\ProductSection.cs" />
     <Compile Include="Models\ProductSectionModel.cs" />
+    <Compile Include="Models\RegisterUserModel.cs" />
     <Compile Include="Models\ThumbnailAreaModel.cs" />
     <Compile Include="Models\ThumbnailModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -263,11 +265,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\html.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\Logos\caf_de_colombia_logo_2935.gif" />
     <Content Include="Content\Logos\Colombia_brand_logo.gif" />
     <Content Include="Content\navbar.css" />
     <Content Include="Content\ProductContent.css" />
     <Content Include="Content\RegisterCode.css" />
+    <Content Include="Content\RegisterUser.css" />
     <Content Include="Content\thumbnails.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -289,7 +293,9 @@
     <Content Include="Areas\Admin\Views\Section\Index.cshtml" />
     <Content Include="Scripts\carret.js" />
     <Content Include="Scripts\JWPlayer.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\RegisterCode.js" />
+    <Content Include="Scripts\RegisterUser.js" />
     <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_EditButtonPartial.cshtml" />
     <Content Include="Views\Shared\_CreateNewButtonPartial.cshtml" />
@@ -399,6 +405,8 @@
     <Content Include="Views\Shared\_ProductItemRowPartial.cshtml" />
     <Content Include="Views\ProductContent\Content.cshtml" />
     <Content Include="Views\Shared\_RegisterCodePartial.cshtml" />
+    <Content Include="Views\Shared\_RegisterUserPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPanelPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
