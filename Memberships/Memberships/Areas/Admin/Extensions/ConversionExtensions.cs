@@ -175,13 +175,13 @@ namespace Memberships.Areas.Admin.Extensions
                 return new List<SubscriptionProductModel>();
 
             var model = await (
-                from pi in subscriptionProducts
+                from sp in subscriptionProducts
                 select new SubscriptionProductModel
                 {
-                    SubscriptionId = pi.SubscriptionId,
-                    ProductId = pi.ProductId,
-                    SubscriptionTitle = db.Items.FirstOrDefault(i => i.Id.Equals(pi.SubscriptionId)).Title,
-                    ProductTitle = db.Products.FirstOrDefault(p => p.Id.Equals(pi.ProductId)).Title
+                    SubscriptionId = sp.SubscriptionId,
+                    ProductId = sp.ProductId,
+                    SubscriptionTitle = db.Subscriptions.FirstOrDefault(i => i.Id.Equals(sp.SubscriptionId)).Title,
+                    ProductTitle = db.Products.FirstOrDefault(p => p.Id.Equals(sp.ProductId)).Title
                 }
                 ).ToListAsync();
 
@@ -196,7 +196,7 @@ namespace Memberships.Areas.Admin.Extensions
                 ProductId = subscriptionProduct.ProductId,
                 Subscriptions = (addListData ? await db.Subscriptions.ToListAsync() : null),
                 Products = (addListData ? await db.Products.ToListAsync() : null),
-                SubscriptionTitle = (await db.Items.FirstOrDefaultAsync(i => i.Id.Equals(subscriptionProduct.SubscriptionId))).Title,
+                SubscriptionTitle = (await db.Subscriptions.FirstOrDefaultAsync(i => i.Id.Equals(subscriptionProduct.SubscriptionId))).Title,
                 ProductTitle = (await db.Products.FirstOrDefaultAsync(i => i.Id.Equals(subscriptionProduct.ProductId))).Title,
             };
 
@@ -205,9 +205,9 @@ namespace Memberships.Areas.Admin.Extensions
 
         public static async Task<bool> CanChange(this SubscriptionProduct subscriptionProduct, ApplicationDbContext db)
         {
-            var oldSP = await db.ProductItems.CountAsync(sp => sp.ProductId.Equals(subscriptionProduct.OldProductId) && sp.ItemId.Equals(subscriptionProduct.OldSubscriptionId));
+            var oldSP = await db.SubscriptionProducts.CountAsync(sp => sp.ProductId.Equals(subscriptionProduct.OldProductId) && sp.SubscriptionId.Equals(subscriptionProduct.OldSubscriptionId));
 
-            var newSP = await db.ProductItems.CountAsync(sp => sp.ProductId.Equals(subscriptionProduct.ProductId) && sp.ItemId.Equals(subscriptionProduct.SubscriptionId));
+            var newSP = await db.SubscriptionProducts.CountAsync(sp => sp.ProductId.Equals(subscriptionProduct.ProductId) && sp.SubscriptionId.Equals(subscriptionProduct.SubscriptionId));
 
             return oldSP.Equals(1) && newSP.Equals(0);
         }

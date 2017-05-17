@@ -22,6 +22,6 @@ namespace Memberships.Entities
         [NotMapped]
         public int OldProductId { get; set; }
         [NotMapped]
-        public string OldSubscriptionId { get; set; }
+        public int OldSubscriptionId { get; set; }
     }
 }

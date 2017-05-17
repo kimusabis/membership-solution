@@ -20,7 +20,7 @@ namespace Memberships.Entities
         [MaxLength(2048)]
         public string Description { get; set; }
         [MaxLength(1024)]
-        [DisplayName("Url")]
+        [DisplayName("Video/Download Url")]
         public string Url { get; set; }
         [MaxLength(1024)]
         [DisplayName("Image Url")]

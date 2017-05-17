@@ -22,13 +22,15 @@ namespace Memberships.Extensions
                                   join pi in db.ProductItems on p.Id equals pi.ProductId
                                   join i in db.Items on pi.ItemId equals i.Id
                                   join s in db.Sections on i.SectionId equals s.Id
+                                  join it in db.ItemTypes on i.ItemTypeId equals it.Id
                                   where p.Id.Equals(productId)
                                   orderby s.Title
                                   select new ProductSection
                                   {
                                       Id = s.Id,
                                       ItemTypeId = i.ItemTypeId,
-                                      Title = s.Title 
+                                      Title = s.Title,
+                                      ItemType = it.Title
                                   }).ToListAsync();
 
             foreach (var section in sections)
@@ -36,12 +38,13 @@ namespace Memberships.Extensions
 
             var result = sections.Distinct(new ProductSectionEqualityComparer()).ToList();
 
-            var union = result.Where(r => !r.Title.ToLower().Contains("download")).
-                Union(result.Where(r => r.Title.ToLower().Contains("download")));
-
+            //this order does not make sense on the screen
+            //var union = result.Where(r => !r.ItemType.ToLower().Contains("download")).
+            //    Union(result.Where(r => r.ItemType.ToLower().Contains("download")));
+            
             var model = new ProductSectionModel
             {
-                Sections = union.ToList(),
+                Sections = result.ToList(),
                 Title = await (from p in db.Products
                                where p.Id.Equals(productId)
                                select p.Title).FirstOrDefaultAsync()
@@ -68,12 +71,12 @@ namespace Memberships.Extensions
                                select new ProductItemRow
                                {
                                    ItemId = i.Id,
-                                   Description = i.Description + i.WaitDays,
+                                   Description = i.Description,
                                    Title = i.Title,
                                    Link = it.Title.ToLower().Equals("download") ? i.Url : "/ProductContent/Content/" + pi.ProductId + "/" + i.Id,
                                    ImageUrl = i.ImageUrl,
                                    ReleaseDate = DbFunctions.AddDays(us.StartDate.Value, i.WaitDays),
-                                   IsAvailable =  us.StartDate.Value > DbFunctions.AddDays(us.StartDate.Value, i.WaitDays),
+                                   IsAvailable =  us.StartDate.Value >= DbFunctions.AddDays(us.StartDate.Value, i.WaitDays),
                                    IsDownload = it.Title.ToLower().Equals("download")
                                }).ToListAsync();
 

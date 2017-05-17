@@ -5,7 +5,7 @@
     ViewBag.Title = "Subscription Products List";
 }
 
-<h2>Index</h2>
+<h2>Subscription Products List</h2>
 
 <p>
     @Html.Partial("_CreateNewButtonPartial")
@@ -13,21 +13,22 @@
 <table class="table table-striped">
     <tr class="success">
         <th>
-            @Html.DisplayNameFor(model => model.ProductTitle)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.SubscriptionTitle)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductTitle)
+        </th>
+        
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductTitle)
-        </td>
+    <tr>        
         <td>
             @Html.DisplayFor(modelItem => item.SubscriptionTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductTitle)
         </td>
         @Html.Partial("_TableButtonsPartial", new SmallButtonModel { SubscriptionId = item.SubscriptionId, ProductId = item.ProductId })
     </tr>

@@ -267,6 +267,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\forgot-password.css" />
     <Content Include="Content\html.css" />
+    <Content Include="Content\Images\bandeja.jpg" />
+    <Content Include="Content\Images\bandera.jpg" />
+    <Content Include="Content\Images\bolsa.jpg" />
+    <Content Include="Content\Images\campesino.jpg" />
+    <Content Include="Content\Images\grano.jpg" />
+    <Content Include="Content\Images\pais.jpg" />
+    <Content Include="Content\Images\saco.jpg" />
+    <Content Include="Content\Images\taza.jpg" />
     <Content Include="Content\login.css" />
     <Content Include="Content\Logos\caf_de_colombia_logo_2935.gif" />
     <Content Include="Content\Logos\Colombia_brand_logo.gif" />
@@ -350,6 +358,7 @@
     <Content Include="Areas\Admin\Views\SubscriptionProduct\Details.cshtml" />
     <Content Include="Areas\Admin\Views\SubscriptionProduct\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SubscriptionProduct\Index.cshtml" />
+    <Content Include="Content\download\download_1.PDF" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -415,7 +424,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ThirdParty\jwplayer-7.10.7\" />
-    <Folder Include="Views\ProductContent\Content\" />
     <Folder Include="Views\RegisterCode\" />
     <Folder Include="Views\Register\" />
   </ItemGroup>
