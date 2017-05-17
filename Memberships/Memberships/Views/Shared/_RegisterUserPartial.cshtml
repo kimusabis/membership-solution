@@ -24,7 +24,7 @@
             </div>
             <div class="register-checkbox">
                 @Html.CheckBoxFor(m => m.AcceptUserAgreement, new { @data_register_user_agreement_click = "" })
-                <span>I Accept the @Html.ActionLink("Terms of use", "TermOfUser", "Legal")</span>
+                <span><label for="AcceptUserAgreement">I Accept the @Html.ActionLink("Terms of use", "TermOfUser", "Legal")</label></span>                
             </div>
             <button type="button" class="pull-right btn btn-success disabled">Sign me up!</button>
         </div>

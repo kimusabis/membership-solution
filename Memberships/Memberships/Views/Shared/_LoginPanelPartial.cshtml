@@ -22,7 +22,7 @@
 
             <div class="remember-me-checkbox">
                 @Html.CheckBoxFor(m=> m.RememberMe)
-                <span>Keep me logged in</span>
+                <span><label for="RememberMe">Keep me logged in</label></span>
                 <button id="login-button" type="button" class="pull-right btn btn-default" data-login-action="/Account/LoginAsync" data-login-return-url="/Home/Index">
                     Log in
                 </button>
