@@ -12,17 +12,20 @@ namespace Memberships.Extensions
         private const string nameidentifier = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
 
         public static string GetUserId(this HttpContext ctx)
-        { 
-            string uid=string.Empty;
-            try {
+        {
+            string uid = string.Empty;
+            try
+            {
                 var claims = ctx.GetOwinContext().Get<ApplicationSignInManager>().AuthenticationManager
                             .User.Claims.FirstOrDefault(claim => claim.Type.Equals(nameidentifier));
 
                 // check that the user is logged in and a claim exits
-                if (claims != default(Claim)) {
+                if (claims != default(Claim))
+                {
                     uid = claims.Value;
                 }
-            } catch { }
+            }
+            catch { }
 
             return uid;
         }
